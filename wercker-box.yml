@@ -13,7 +13,7 @@ keywords:
     - rvm
 script: |
     sudo apt-get update -y
-    sudo apt-get install git zlib1g-dev libreadline-dev wget build-essential libqtwebkit-dev curl -y
+    sudo apt-get install git zlib1g-dev libreadline-dev wget build-essential python-software-properties python g++ make libqtwebkit-dev curl -y
     sudo apt-get remove ruby1.9.1
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     curl -sSL https://get.rvm.io | bash -s stable
@@ -24,19 +24,9 @@ script: |
     rvm install 2.2.2
     rvm --default use 2.2.2
     # Install Node.js
-    export NODEVERSION=5.1.0
-    cd $HOME
-    mkdir nodeinstall
-    cd nodeinstall
-    wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
-    tar xzf node-v$NODEVERSION.tar.gz
-    cd node-v$NODEVERSION
-    ./configure
-    make
-    sudo make install
-    cd $HOME
-    rm -fr nodeinstall
-    node -v
+    sudo add-apt-repository ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install nodejs
     npm install phantomjs2
     npm install bower
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
