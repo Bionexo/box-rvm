@@ -4,15 +4,9 @@ This box provides the RVM runtime with a couple of Rubies installed.
 
 Currently installed Rubies:
 
-- `ruby-2.0.0-p643` (deprecated)
-- `ruby-2.0.0-p645`
-- `ruby-2.0.0-p647`
-- `ruby-2.1.5` (deprecated)
-- `ruby-2.1.6`
-- `ruby-2.1.7`
-- `ruby-2.2.1` (deprecated)
-- `ruby-2.2.2`
-- `ruby-2.2.3` (default)
+- `ruby-2.1.3`
+- `ruby-2.2.0`
+- `ruby-2.2.2` (default)
 
 At least _three_ patch level versions will be kept of every version. If you want
 to keep using a old version you can lock the version on a box, but we

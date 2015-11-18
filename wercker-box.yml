@@ -4,21 +4,16 @@ inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: main
 platform: ubuntu@12.04
 packages:
-    - ruby@2.0.0-p643
-    - ruby@2.0.0-p645
-    - ruby@2.0.0-p647
-    - ruby@2.1.5
-    - ruby@2.1.6
-    - ruby@2.1.7
-    - ruby@2.2.1
+    - ruby@2.1.3
+    - ruby@2.2.0
     - ruby@2.2.2
-    - ruby@2.2.3
+    - nodejs@0.10.38
 keywords:
     - ruby
     - rvm
 script: |
     sudo apt-get update -y
-    sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev curl -y
+    sudo apt-get install git zlib1g-dev libreadline-dev wget build-essential libqtwebkit-dev curl -y
     sudo apt-get remove ruby1.9.1
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     curl -sSL https://get.rvm.io | bash -s stable
@@ -28,6 +23,20 @@ script: |
     rvm install 2.2.0
     rvm install 2.2.2
     rvm --default use 2.2.2
+    # Install Node.js
+    export NODEVERSION=5.1.0
+    cd $HOME
+    mkdir nodeinstall
+    cd nodeinstall
+    wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
+    tar xzf node-v$NODEVERSION.tar.gz
+    cd node-v$NODEVERSION
+    ./configure
+    make
+    sudo make install
+    cd $HOME
+    rm -fr nodeinstall
+    node -v
     npm install phantomjs2
     npm install bower
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
