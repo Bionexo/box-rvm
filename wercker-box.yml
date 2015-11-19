@@ -1,5 +1,5 @@
 name: rvm
-version: 4.0.0
+version: 1.0.0
 inherits: wercker/ubuntu12.04-webessentials@1.0.4
 type: main
 platform: ubuntu@12.04
@@ -14,7 +14,10 @@ keywords:
 script: |
     sudo apt-get update -y
     sudo apt-get install git zlib1g-dev libreadline-dev wget build-essential python-software-properties python g++ make libqtwebkit-dev curl -y
-    sudo apt-get install nodejs
+    # Install npm
+    sudo add-apt-repository ppa:chris-lea/node.js -y
+    sudo apt-get update
+    sudo apt-get install nodejs npm
     sudo apt-get remove ruby1.9.1
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     curl -sSL https://get.rvm.io | bash -s stable
@@ -25,6 +28,7 @@ script: |
     rvm install 2.2.2
     rvm --default use 2.2.2
     npm install bower
+    npm update phantomjs
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
     echo "RAILS_ENV=test" | sudo tee -a /etc/environment
     echo "RACK_ENV=test" | sudo tee -a /etc/environment
