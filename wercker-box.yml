@@ -66,9 +66,6 @@ script: |
   gem install compass -v 1.0.3
   # install global npm packages
   sudo npm install -g grunt-cli bower
-  # protractor
-  sudo npm install -g protractor
-  sudo webdriver-manager update
   # phantomjs
   export PHANTOM_VERSION=1.9.8
   wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${PHANTOM_VERSION}-linux-x86_64.tar.bz2
