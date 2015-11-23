@@ -36,10 +36,8 @@ The MIT License (MIT)
 
 # Changelog
 
-## 1.0.1
+## 1.0.0
 
 [Features] - Add Ruby 2.2.3 and set default
-
-## 1.0.0
 
 - Initial release
