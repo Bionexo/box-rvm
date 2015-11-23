@@ -7,6 +7,7 @@ packages:
     - ruby@2.1.3
     - ruby@2.2.0
     - ruby@2.2.2
+    - ruby@2.2.3
     - nodejs@0.10.38
 keywords:
     - ruby
@@ -26,7 +27,8 @@ script: |
     rvm install 2.1.3
     rvm install 2.2.0
     rvm install 2.2.2
-    rvm --default use 2.2.2
+    rvm install 2.2.3
+    rvm --default use 2.2.3
     npm install bower
     npm update phantomjs
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc

@@ -6,7 +6,8 @@ Currently installed Rubies:
 
 - `ruby-2.1.3`
 - `ruby-2.2.0`
-- `ruby-2.2.2` (default)
+- `ruby-2.2.2`
+- `ruby-2.2.3` (default)
 
 At least _three_ patch level versions will be kept of every version. If you want
 to keep using a old version you can lock the version on a box, but we
@@ -34,6 +35,10 @@ Every installed Ruby version comes installed with `bundler ~> 1.5.1`.
 The MIT License (MIT)
 
 # Changelog
+
+## 1.0.1
+
+[Features] - Add Ruby 2.2.3 and set default
 
 ## 1.0.0
 
