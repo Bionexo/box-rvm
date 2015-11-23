@@ -8,18 +8,33 @@ packages:
     - ruby@2.2.0
     - ruby@2.2.2
     - ruby@2.2.3
-    - nodejs@0.10.38
+    - nodejs
+    - grunt
+    - bower    
 keywords:
     - ruby
     - rvm
+    - nodejs
+    - bower
 script: |
     sudo apt-get update -y
     sudo apt-get install git zlib1g-dev libreadline-dev wget build-essential python-software-properties python g++ make libqtwebkit-dev curl -y
-    # Install npm
-    sudo apt-get remove ruby1.9.1 nodejs npm -y
-    sudo add-apt-repository ppa:chris-lea/node.js -y
-    sudo apt-get update -y
-    sudo apt-get install nodejs
+    # node.js
+    export NODEVERSION=0.10.38
+    cd $HOME
+    mkdir nodeinstall
+    cd nodeinstall
+    wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
+    tar xzf node-v$NODEVERSION.tar.gz
+    cd node-v$NODEVERSION
+    ./configure
+    make
+    sudo make install
+    cd $HOME
+    rm -fr nodeinstall
+    node -v
+    # node.js
+    sudo apt-get remove ruby1.9.1 -y
     gpg --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     curl -sSL https://get.rvm.io | bash -s stable
     echo "bundler -v~>1.9.0" > $HOME/.rvm/gemsets/global.gems
@@ -29,8 +44,8 @@ script: |
     rvm install 2.2.2
     rvm install 2.2.3
     rvm --default use 2.2.3
-    npm install bower
-    npm update phantomjs
+    sudo npm install -g grunt-cli bower
+    sudo npm update phantomjs
     echo "gem: --no-rdoc --no-ri" >> $HOME/.gemrc
     echo "RAILS_ENV=test" | sudo tee -a /etc/environment
     echo "RACK_ENV=test" | sudo tee -a /etc/environment
