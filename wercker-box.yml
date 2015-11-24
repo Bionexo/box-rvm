@@ -49,6 +49,10 @@ script: |
   sudo npm cache clean -f
   sudo npm install -g n
   sudo n stable
+  # install global npm packages
+  sudo npm install -g grunt-cli bower
+  # phantomjs2
+  sudo npm install -g phantomjs2
   # ruby
   sudo apt-get install git zlib1g-dev libreadline-dev libqtwebkit-dev curl -y
   sudo apt-get remove ruby1.9.1
@@ -64,14 +68,3 @@ script: |
   # install gems
   gem install bundler -v 1.9.4
   gem install compass -v 1.0.3
-  # install global npm packages
-  sudo npm install -g grunt-cli bower
-  # phantomjs
-  sudo apt-get install unzip -y
-  sudo apt-get install g++ flex bison gperf perl libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev libpng-dev libjpeg-dev -y
-  mkdir phantomjs_2
-  cd phantomjs_2
-  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.0.0-source.zip
-  unzip phantomjs-2.0.0-source.zip
-  cd phantomjs-2.0.0/
-  time ./build.sh
