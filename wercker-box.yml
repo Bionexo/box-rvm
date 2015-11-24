@@ -30,19 +30,14 @@ script: |
   mkdir -p ~/.lftp
   echo "set ssl:verify-certificate no" > ~/.lftp/rc
   # Node.js
-  export NODEVERSION=0.12.2
-  sudo apt-get install wget build-essential
-  cd $HOME
-  mkdir nodeinstall
-  cd nodeinstall
-  wget http://nodejs.org/dist/v$NODEVERSION/node-v$NODEVERSION.tar.gz
-  tar xzf node-v$NODEVERSION.tar.gz
-  cd node-v$NODEVERSION
-  ./configure
+  wget https://nodejs.org/dist/v0.12.6/node-v0.12.6.tar.gz
+  tar zxf node-v0.12.6.tar.gz
+  cd node-v0.12.6
+  PYTHON=/usr/bin/python2 /usr/bin/python2 ./configure
   make
   sudo make install
-  cd $HOME
-  rm -fr nodeinstall
+  cd ..
+  rm -fr node-v0.12.6*
   node -v
   # npm
   npm -v
@@ -67,11 +62,12 @@ script: |
   # install global npm packages
   sudo npm install -g grunt-cli bower
   # phantomjs
-  sudo apt-get install unzip -y
-  sudo apt-get install g++ flex bison gperf perl libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev libpng-dev libjpeg-dev -y
   mkdir phantomjs_2
   cd phantomjs_2
-  wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.0.0-source.zip
-  unzip phantomjs-2.0.0-source.zip
-  cd phantomjs-2.0.0/
-  time ./build.sh --confirm
+  wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  tar jxf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+  mv phantomjs ../phantomjs/bin/
+  cd ..
+  rm -fr pjs
+  ldd phantomjs/bin/phantomjs
+  phantomjs/bin/phantomjs -v
